@@ -36,8 +36,8 @@ public class GameWindow
 {
 	private static final Logger LOGGER = Logger.getLogger(GameWindow.class.getName());
 	private static final int KEYBOARD_MOVEMENT_DELTA = 20;
-	private static final int mapHeight = 600;
-	private static final int mapWidth = 900;
+	private static final int MAPHIEGHT = 600;
+	private static final int MAPWIDTH = 900;
 	
 	// Setting image patterns to load images on top of the circles
     private static final Image imCop = new Image("assets/cophead.png");
@@ -118,9 +118,9 @@ public class GameWindow
 		
 		// Character placements and settings
 		Random rand = new Random();
-		int pos = rand.nextInt(mapWidth);
-        player.setCenterX(mapWidth/2);
-        player.setCenterY(mapHeight/2);
+		int pos = rand.nextInt(MAPWIDTH);
+        player.setCenterX(MAPWIDTH/2);
+        player.setCenterY(MAPHIEGHT/2);
         player.setRadius(15);
         Image imPlayer = new Image("assets/mobbosshead.png");
         player.setFill(new ImagePattern(imPlayer));
@@ -131,7 +131,7 @@ public class GameWindow
         cop.setFill(ip_cop);
         
         cit.setCenterX(pos);
-        pos = rand.nextInt(mapHeight);
+        pos = rand.nextInt(MAPHIEGHT);
         cit.setCenterY(pos);
         cit.setRadius(10);
         cit.setFill(ip_cit);
@@ -153,8 +153,8 @@ public class GameWindow
 				a.setCenterX(140);
 				a.setCenterY(140);
 				b.setRadius(15);
-				b.setCenterX(mapWidth/2);
-		        b.setCenterY(mapHeight/2);
+				b.setCenterX(MAPWIDTH/2);
+		        b.setCenterY(MAPHIEGHT/2);
 			}
 			else if(a.getFill() == Color.GREEN) {
 				a.setFill(Color.TRANSPARENT);
@@ -166,9 +166,9 @@ public class GameWindow
 				score += 10;
 				scoreCounter.setText(scoreHeading + score);
 				Random rand = new Random();
-				int pos = rand.nextInt(mapWidth);
+				int pos = rand.nextInt(MAPWIDTH);
 				a.setCenterX(pos);
-		        pos = rand.nextInt(mapHeight);
+		        pos = rand.nextInt(MAPHIEGHT);
 		        a.setCenterY(pos);
 		        a.setRadius(10);
 		        a.setFill(ip_cit);
@@ -188,10 +188,10 @@ public class GameWindow
 	    		if(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA > 0)
 	    			cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 2: 
-	    		if(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA < mapWidth)
+	    		if(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA < MAPWIDTH)
 	    			cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 3: 
-	    		if(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA < mapHeight)
+	    		if(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA < MAPHIEGHT)
 	    			cop.setCenterY(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 4:  
 	    		if(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA > 0)
@@ -238,10 +238,10 @@ public class GameWindow
             		if(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA > 0)
             			circle.setCenterY(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
             	case RIGHT: 
-            		if(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA < mapWidth)
+            		if(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA < MAPWIDTH)
             			circle.setCenterX(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
             	case DOWN: 
-            		if(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA < mapHeight)
+            		if(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA < MAPHIEGHT)
             			circle.setCenterY(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
             	case LEFT:  
             		if(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA > 0)
