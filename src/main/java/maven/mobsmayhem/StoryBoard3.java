@@ -1,7 +1,5 @@
 package maven.mobsmayhem;
 
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.image.Image;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
