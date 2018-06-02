@@ -19,8 +19,7 @@ public class StartWindow extends Application
 	private static final int MAPHEIGHT = 600;
 	private static final int MAPWIDTH = 900;
 	static final Group root = new Group();
-	static MediaPlayer mp;
-	boolean muted;	
+	static MediaPlayer mp;	
 	Scene home = new Scene(root, MAPWIDTH, MAPHEIGHT);
 	Image img;
 	ImagePattern pattern;
@@ -70,10 +69,7 @@ public class StartWindow extends Application
     	
     	//Music
     	m = new Media(getClass().getResource("assets/godfather_theme.mp3").toURI().toString());
-	    mp = new MediaPlayer(m);
-	    mp.setVolume(0.4);
-	    mp.play(); 
-	    muted = false;
+    	createMediaPlayer(m);
         
 	    MainMenuWindow.menuLayout(startGame, howToPlay, settings, style1, style2, clickPlayer);
         
@@ -104,7 +100,7 @@ public class StartWindow extends Application
     	stage.setScene(home);
     	stage.show();
     	
-    	stage1 = stage;
+    	setStage(stage);
 
     }
 	
@@ -114,5 +110,15 @@ public class StartWindow extends Application
 	
 	public static Stage getStage() {
 		return stage1;
+	}
+	
+	public static void setStage(Stage s) {
+		stage1 = s;
+	}
+	
+	public static void createMediaPlayer(Media m) {
+	    mp = new MediaPlayer(m);
+	    mp.setVolume(0.4);
+	    mp.play(); 
 	}
 }
