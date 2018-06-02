@@ -17,14 +17,14 @@ import javafx.scene.text.Font;
  
 public class StartWindow extends Application 
 {
-	private static final int map_height = 600;
-	private static final int map_width = 900;
+	private static final int MAPHEIGHT = 600;
+	private static final int MAPWIDTH = 900;
 	static final Group root = new Group();
 	static MediaPlayer mp;
 	boolean muted;	
 	Image unmute_image, mute_image;
 	ImageView unmute_iv, mute_iv;
-	Scene home = new Scene(root, map_width, map_height);
+	Scene home = new Scene(root, MAPWIDTH, MAPHEIGHT);
 	Image img;
 	ImagePattern pattern;
 	static Stage stage1;
