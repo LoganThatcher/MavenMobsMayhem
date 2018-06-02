@@ -1,4 +1,4 @@
-package MavenMobsMayhem.MavenMobsMayhem;
+package maven.mobsmayhem;
 
 import javafx.application.Application;
 import javafx.scene.Group;

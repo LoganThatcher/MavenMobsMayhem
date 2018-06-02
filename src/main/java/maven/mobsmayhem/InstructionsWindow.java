@@ -1,4 +1,4 @@
-package MavenMobsMayhem.MavenMobsMayhem;
+package maven.mobsmayhem;
 
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.media.AudioClip;

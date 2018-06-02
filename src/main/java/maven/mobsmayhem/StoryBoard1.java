@@ -1,25 +1,25 @@
-package MavenMobsMayhem.MavenMobsMayhem;
+package maven.mobsmayhem;
 
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.image.Image;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+	import javafx.scene.image.Image;
+	import javafx.scene.Group;
+	import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
+	import javafx.concurrent.Task;
+	import javafx.concurrent.WorkerStateEvent;
+	import javafx.event.EventHandler;
 	
-public class StoryBoard4 {
+public class StoryBoard1 {
 	
 		private final Group rootGroup;	
-		boolean change;
+		boolean change = true;
 	    
-		public StoryBoard4(Scene game, Stage primaryStage){
+		public StoryBoard1(Scene game, Stage primaryStage){
 			rootGroup = new Group();
 
 			
-			String url = "assets/sb4.png";
+			String url = "assets/sb1.png";
 			Image img = new Image(url);
 			Button skip = new Button("SKIP");
 			Button next = new Button("NEXT");
@@ -48,30 +48,31 @@ public class StoryBoard4 {
 	            @Override
 	            public void handle(WorkerStateEvent event) {
 	            	if(change) {
-		            	LoadWindow load = new LoadWindow(game,primaryStage);
-		        		primaryStage.getScene().setRoot(load.getRootGroup());
+		            	StoryBoard2 sb2 = new StoryBoard2(game,primaryStage);
+		        		primaryStage.getScene().setRoot(sb2.getRootGroup());
 	            	}
 	            }
 	        });
 	        new Thread(sleeper).start();
+			
 			
 	        skip.setOnAction(e -> {
 	    		
 		    	LoadWindow load = new LoadWindow(game,primaryStage);
 	    		primaryStage.getScene().setRoot(load.getRootGroup());
 	    		change = false;
+	    		
 	    	});
 		    next.setOnAction(e -> {
 	    		
-		    	LoadWindow load = new LoadWindow(game,primaryStage);
-	    		primaryStage.getScene().setRoot(load.getRootGroup());
+		    	StoryBoard2 sb2 = new StoryBoard2(game,primaryStage);
+	    		primaryStage.getScene().setRoot(sb2.getRootGroup());
 	    		change = false;
 	    		
 	    	});
+		
 		    
 		    rootGroup.getChildren().addAll(skip,next);
-			
-		
 		}
 
 	    public Group getRootGroup() {
@@ -81,3 +82,6 @@ public class StoryBoard4 {
 	    
 
 }
+
+
+

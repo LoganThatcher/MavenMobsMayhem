@@ -1,4 +1,4 @@
-package MavenMobsMayhem.MavenMobsMayhem;
+package maven.mobsmayhem;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
