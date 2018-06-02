@@ -43,17 +43,14 @@ public class LoadWindow
 		
 		
 		t = new Text(30,565,"Loading");
-    	t.setFont(font);
-    	t.setFill(Color.WHITE);
+    	fontAndFill(t, font);
     	
     	progress = new Text(300,565, "0");
-    	progress.setFont(font);
-    	progress.setFill(Color.WHITE);
+    	fontAndFill(progress, font);
     	progress.setStyle("-fx-font-size: 75");
     	
     	tip = new Text(350,275,"Tip: Avoid police to avoid going to jail");
-    	tip.setFont(font);
-    	tip.setFill(Color.WHITE);
+    	fontAndFill(tip, font);
     	tip.setStyle("-fx-font-size: 50");
     
 		game.setFill(pattern);
@@ -111,6 +108,10 @@ public class LoadWindow
     	return rootGroup;
     }
     
+    private void fontAndFill(Text t, Font font) {
+    	t.setFont(font);
+    	t.setFill(Color.WHITE);
+	}
     
 
 }
