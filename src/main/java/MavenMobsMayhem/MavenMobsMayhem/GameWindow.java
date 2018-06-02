@@ -19,6 +19,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -31,6 +34,7 @@ import javafx.scene.media.AudioClip;
 
 public class GameWindow
 {
+	private final static Logger LOGGER = Logger.getLogger(GameWindow.class.getName());
 	private static final int KEYBOARD_MOVEMENT_DELTA = 20;
 	private static final int map_height = 600;
 	private static final int map_width = 900;
@@ -281,7 +285,8 @@ public class GameWindow
 			click_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
 			click_player.play();
 		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
+			LOGGER.log(Level.FINE, "context", e1);
+			//e1.printStackTrace();
 		}
     	
      	rootGroup.setEffect(new GaussianBlur());
