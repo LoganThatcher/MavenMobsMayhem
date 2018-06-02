@@ -38,6 +38,8 @@ public class StoryBoard4 {
 	                try {
 	                    Thread.sleep(5000);
 	                } catch (InterruptedException e) {
+	                	// Restore interrupted state...
+	                    Thread.currentThread().interrupt();
 	                }
 	                return null;
 	            }
