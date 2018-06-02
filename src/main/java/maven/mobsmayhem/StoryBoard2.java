@@ -15,8 +15,8 @@ public class StoryBoard2 {
 	
 	public StoryBoard2(Scene game, Stage primaryStage){
 		rootGroup = new Group();
-		Button skip = null;
-		Button next = null;
+		Button skip = new Button("SKIP");
+		Button next = new Button("NEXT");
 
 		StoryBoard1.setupStoryBoard(game, "assets/sb2.png", skip, next);
 		

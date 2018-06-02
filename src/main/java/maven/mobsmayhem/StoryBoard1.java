@@ -17,8 +17,8 @@ public class StoryBoard1 {
 	    
 		public StoryBoard1(Scene game, Stage primaryStage){
 			rootGroup = new Group();
-			Button skip = null;
-			Button next = null;
+			Button skip = new Button("SKIP");
+			Button next = new Button("NEXT");
 
 			setupStoryBoard(game, "assets/sb1.png", skip, next);
 			
@@ -60,8 +60,6 @@ public class StoryBoard1 {
 	    
 	    public static void setupStoryBoard(Scene game, String url, Button skip, Button next) {
 			Image img = new Image(url);
-			skip = new Button("SKIP");
-			next = new Button("NEXT");
 			
 			skip.setLayoutX(845);
 			skip.setLayoutY(560);
