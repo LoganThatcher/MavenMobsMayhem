@@ -34,13 +34,10 @@ import javafx.scene.media.AudioClip;
 
 public class GameWindow
 {
-	private final static Logger LOGGER = Logger.getLogger(GameWindow.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(GameWindow.class.getName());
 	private static final int KEYBOARD_MOVEMENT_DELTA = 20;
-	private static final int map_height = 600;
-	private static final int map_width = 900;
-//	private static final Color cop_color = Color.BLUE;
-//	private static final Color player_color = Color.BLACK;
-//	private static final Color cit_color = Color.ANTIQUEWHITE;
+	private static final int mapHeight = 600;
+	private static final int mapWidth = 900;
 	
 	// Setting image patterns to load images on top of the circles
     private static final Image imCop = new Image("assets/cophead.png");
@@ -48,15 +45,15 @@ public class GameWindow
     private static final Image imCit = new Image("assets/civilianhead.png");
     private static final ImagePattern ip_cit = new ImagePattern(imCit);
 	
-	ArrayList<Circle> moneys = new ArrayList<Circle>();
+	ArrayList<Circle> moneys = new ArrayList<>();
 	Iterator<Circle> iter = moneys.iterator();
 	private final Group rootGroup;	
-	//private int mobSize;
 	private int lives;
 	private int score;
-	AudioClip click_player;
-	Text life_counter;
-	Text score_counter;
+	AudioClip clickPlayer;
+	Text lifeCounter;
+	Text scoreCounter;
+	String scoreHeading = "Score: ";
 	
 	Random ran = new Random();
 
@@ -67,19 +64,15 @@ public class GameWindow
 		Timeline circMover;
 		
 		Circle cop = new Circle();
-		Circle cop2 = new Circle();
-		Circle cop3 = new Circle();
-		Circle cop4 = new Circle();
 		Circle cit = new Circle();
 		Circle player = new Circle();
 		
-		//mobSize = 10;
 		lives = 3;
-		life_counter = new Text(10,20,"Lives: " + lives);
-		life_counter.setFill(Color.RED);
+		lifeCounter = new Text(10,20,"Lives: " + lives);
+		lifeCounter.setFill(Color.RED);
 		score = 0;
-		score_counter = new Text(830,20,"Score: " + score);
-		score_counter.setFill(Color.RED);
+		scoreCounter = new Text(830,20,scoreHeading + score);
+		scoreCounter.setFill(Color.RED);
 		
 		game.setFill(pattern);
 		rootGroup = new Group();
@@ -115,8 +108,8 @@ public class GameWindow
 		        checkCollisions(cit, player, game, primaryStage);
 		        
 		        if(!moneys.isEmpty()) {
-		        	Circle curr_money = moneys.get(0);
-		        	checkCollisions(curr_money, cop, game, primaryStage);
+		        	Circle currMoney = moneys.get(0);
+		        	checkCollisions(currMoney, cop, game, primaryStage);
 		        }
 		    }
 		}));
@@ -125,9 +118,9 @@ public class GameWindow
 		
 		// Character placements and settings
 		Random rand = new Random();
-		int pos = rand.nextInt(map_width);
-        player.setCenterX(map_width/2);
-        player.setCenterY(map_height/2);
+		int pos = rand.nextInt(mapWidth);
+        player.setCenterX(mapWidth/2);
+        player.setCenterY(mapHeight/2);
         player.setRadius(15);
         Image imPlayer = new Image("assets/mobbosshead.png");
         player.setFill(new ImagePattern(imPlayer));
@@ -136,16 +129,15 @@ public class GameWindow
         cop.setCenterY(140);
         cop.setRadius(10);
         cop.setFill(ip_cop);
-        System.out.println(cop.getFill());
         
         cit.setCenterX(pos);
-        pos = rand.nextInt(map_height);
+        pos = rand.nextInt(mapHeight);
         cit.setCenterY(pos);
         cit.setRadius(10);
         cit.setFill(ip_cit);
        
         
-        rootGroup.getChildren().addAll(player, cop, cit, life_counter, score_counter);
+        rootGroup.getChildren().addAll(player, cop, cit, lifeCounter, scoreCounter);
         moveCircleOnKeyPress(game, player,primaryStage,circMover);
 	}
 
@@ -157,12 +149,12 @@ public class GameWindow
 		    		primaryStage.getScene().setRoot(go.getRootGroup());
 				}
 				lives -= 1;
-				life_counter.setText("Lives: " + lives);
+				lifeCounter.setText("Lives: " + lives);
 				a.setCenterX(140);
 				a.setCenterY(140);
 				b.setRadius(15);
-				b.setCenterX(map_width/2);
-		        b.setCenterY(map_height/2);
+				b.setCenterX(mapWidth/2);
+		        b.setCenterY(mapHeight/2);
 			}
 			else if(a.getFill() == Color.GREEN) {
 				a.setFill(Color.TRANSPARENT);
@@ -172,11 +164,11 @@ public class GameWindow
 				a.setRadius(0);
 				rootGroup.getChildren().remove(a);
 				score += 10;
-				score_counter.setText("Score: " + score);
+				scoreCounter.setText(scoreHeading + score);
 				Random rand = new Random();
-				int pos = rand.nextInt(map_width);
+				int pos = rand.nextInt(mapWidth);
 				a.setCenterX(pos);
-		        pos = rand.nextInt(map_height);
+		        pos = rand.nextInt(mapHeight);
 		        a.setCenterY(pos);
 		        a.setRadius(10);
 		        a.setFill(ip_cit);
@@ -193,16 +185,16 @@ public class GameWindow
 		
 		switch (direc) {
 	    	case 1:
-	    		if(!(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA <= 0))
+	    		if(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA > 0)
 	    			cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 2: 
-	    		if(!(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA >= map_width))
+	    		if(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA < mapWidth)
 	    			cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 3: 
-	    		if(!(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA >= map_height))
+	    		if(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA < mapHeight)
 	    			cop.setCenterY(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
 	    	case 4:  
-	    		if(!(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA <= 0))
+	    		if(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA > 0)
 	    			cop.setCenterX(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
 	    	default:
 	    		break;
@@ -210,19 +202,19 @@ public class GameWindow
 	}
 
 	private void moveCircleTowardPlayer(final Circle cop,final Circle player) {
-		double player_x = player.getCenterX();
-		double player_y = player.getCenterY();
-		double cop_x = cop.getCenterX();
-		double cop_y = cop.getCenterY();
+		double playerX = player.getCenterX();
+		double playerY = player.getCenterY();
+		double copX = cop.getCenterX();
+		double copY = cop.getCenterY();
 		
 		if(!moneys.isEmpty()){
-			player_x = moneys.get(0).getCenterX();
-			player_y = moneys.get(0).getCenterY();
+			playerX = moneys.get(0).getCenterX();
+			playerY = moneys.get(0).getCenterY();
 		}
 		
-		if(Math.abs(player_x - cop_x) > Math.abs(player_y - cop_y)){
+		if(Math.abs(playerX - copX) > Math.abs(playerY - copY)){
 			//Move horizontally
-			if(player_x > cop_x) {
+			if(playerX > copX) {
 				cop.setCenterX(cop.getCenterX() + KEYBOARD_MOVEMENT_DELTA);
 			}else {
 				cop.setCenterX(cop.getCenterX() - KEYBOARD_MOVEMENT_DELTA);
@@ -230,7 +222,7 @@ public class GameWindow
 		}
 		else {
 			//Move vertically
-			if(player_y > cop_y) {
+			if(playerY > copY) {
 				cop.setCenterY(cop.getCenterY() + KEYBOARD_MOVEMENT_DELTA);
 			}else {
 				cop.setCenterY(cop.getCenterY() - KEYBOARD_MOVEMENT_DELTA);
@@ -243,23 +235,23 @@ public class GameWindow
           @Override public void handle(KeyEvent event) {
             switch (event.getCode()) {
             	case UP:
-            		if(!(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA <= 0))
+            		if(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA > 0)
             			circle.setCenterY(circle.getCenterY() - KEYBOARD_MOVEMENT_DELTA); break;
             	case RIGHT: 
-            		if(!(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA >= map_width))
+            		if(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA < mapWidth)
             			circle.setCenterX(circle.getCenterX() + KEYBOARD_MOVEMENT_DELTA); break;
             	case DOWN: 
-            		if(!(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA >= map_height))
+            		if(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA < mapHeight)
             			circle.setCenterY(circle.getCenterY() + KEYBOARD_MOVEMENT_DELTA); break;
             	case LEFT:  
-            		if(!(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA <= 0))
+            		if(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA > 0)
             			circle.setCenterX(circle.getCenterX() - KEYBOARD_MOVEMENT_DELTA); break;
             	case ESCAPE: 
-            		pause(primaryStage, scene,circMover);
+            		pause(primaryStage, scene,circMover); break;
             	case SPACE: 
             		if(score >= 10) {
             			score = score - 10;
-            			score_counter.setText("Score: " + Integer.toString(score));
+            			scoreCounter.setText(scoreHeading + Integer.toString(score));
 	            		Circle money = new Circle();
 	            		money.setCenterY(circle.getCenterY());
 	            	    money.setCenterX(circle.getCenterX());
@@ -282,11 +274,10 @@ public class GameWindow
     	circMover.pause();
     
 		try {
-			click_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
-			click_player.play();
+			clickPlayer = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());
+			clickPlayer.play();
 		} catch (URISyntaxException e1) {
 			LOGGER.log(Level.FINE, "context", e1);
-			//e1.printStackTrace();
 		}
     	
      	rootGroup.setEffect(new GaussianBlur());
@@ -297,11 +288,11 @@ public class GameWindow
 	  	pauseRoot.prefHeightProperty().bind(primaryStage.heightProperty());
 
 	  	
-	  	Text pause_title = new Text("Paused");
-	  	pause_title.setFont(font);
-	  	pause_title.setFill(Color.WHITE);
+	  	Text pauseTitle = new Text("Paused");
+	  	pauseTitle.setFont(font);
+	  	pauseTitle.setFill(Color.WHITE);
 	  	
-	  	pauseRoot.getChildren().add(pause_title);
+	  	pauseRoot.getChildren().add(pauseTitle);
 	    pauseRoot.setStyle("-fx-background-color: rgba(255, 255, 255, 0);");
 	    pauseRoot.setAlignment(Pos.CENTER);
 	    pauseRoot.setPadding(new Insets(20));
@@ -309,8 +300,6 @@ public class GameWindow
 	      
 	    Button resume = new Button("RESUME");
 	    Button restart = new Button("RESTART");
-	    //Button settings = new Button("SETTINGS");
-	    //Button instructions = new Button("INSTRUCTIONS");
 	    Button quit = new Button("QUIT");
 	    pauseRoot.getChildren().addAll(resume,restart,quit);
 
@@ -326,16 +315,6 @@ public class GameWindow
 	      	popupStage.hide();
 	      	circMover.play();
 	    });
-	    /*settings.setOnAction(e -> {
-    		PauseSettings pset = new PauseSettings(scene, primaryStage);
-    		primaryStage.getScene().setRoot(pset.getRootGroup());
-    		popupStage.hide();
-    	});
-	    instructions.setOnAction(e -> {
-    		InstructionsWindow instruct = new InstructionsWindow(scene, primaryStage);
-    		primaryStage.getScene().setRoot(instruct.getRootGroup());
-    		popupStage.hide();
-    	});*/
 	    quit.setOnAction(e -> {
 			MainMenuWindow main = new MainMenuWindow(scene, primaryStage);
 			primaryStage.getScene().setRoot(main.getRootGroup());
@@ -348,15 +327,12 @@ public class GameWindow
 		});  
 	    pauseRoot.setOnKeyPressed(new EventHandler<KeyEvent>() {
 	          @Override public void handle(KeyEvent event) {
-	            switch (event.getCode()) {
-	            	case ESCAPE: 
-	                 	click_player.play();
-	                 	circMover.play();
-	            		rootGroup.setEffect(null);
-	        	      	popupStage.hide();	        	      	
-	            	default:
-	            		break;
-	            }
+	        	if (event.getCode().equals(KeyCode.ESCAPE)) {
+	        		clickPlayer.play();
+                 	circMover.play();
+            		rootGroup.setEffect(null);
+        	      	popupStage.hide();	
+				}
 	          }
 	    });
 	      
