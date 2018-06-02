@@ -51,7 +51,37 @@ public class MainMenuWindow {
 		settings = new Button("Settings");
 		settings.setFont(font);
 				    	
+		menuLayout(startGame, howToPlay, settings, style1, style2, clickPlayer);	        				        
 				        
+	    rootGroup.getChildren().addAll(startGame, howToPlay, settings, t);
+				        
+				        
+		//Button Actions
+		startGame.setOnAction(e -> {	    		
+			StoryBoard1 sb1 = new StoryBoard1(main,primaryStage);
+    		primaryStage.getScene().setRoot(sb1.getRootGroup());
+    		click2Player.play();	    		
+		});
+				    	
+		settings.setOnAction(e -> {
+		    SettingsWindow set = new SettingsWindow(main,primaryStage);
+			primaryStage.getScene().setRoot(set.getRootGroup());
+			click2Player.play();
+		});
+
+		howToPlay.setOnAction( e -> {
+			InstructionsWindow instruct = new InstructionsWindow(main, primaryStage);
+			primaryStage.getScene().setRoot(instruct.getRootGroup());
+			click2Player.play();
+		});
+
+	}
+
+	public Group getRootGroup() {
+		return rootGroup;
+	} 
+	
+	public static void menuLayout(Button startGame, Button howToPlay, Button settings, String style1, String style2, AudioClip clickPlayer) {
 		//Button Positioning and Sizing
 		howToPlay.setLayoutX(250);
 		howToPlay.setLayoutY(400);
@@ -85,35 +115,8 @@ public class MainMenuWindow {
 			clickPlayer.play();
 		});
 		howToPlay.setOnMouseExited(e -> howToPlay.setStyle(style1));
-				        
-				        
-	    rootGroup.getChildren().addAll(startGame, howToPlay, settings, t);
-				        
-				        
-		//Button Actions
-		startGame.setOnAction(e -> {	    		
-			StoryBoard1 sb1 = new StoryBoard1(main,primaryStage);
-    		primaryStage.getScene().setRoot(sb1.getRootGroup());
-    		click2Player.play();	    		
-		});
-				    	
-		settings.setOnAction(e -> {
-		    SettingsWindow set = new SettingsWindow(main,primaryStage);
-			primaryStage.getScene().setRoot(set.getRootGroup());
-			click2Player.play();
-		});
-
-		howToPlay.setOnAction( e -> {
-			InstructionsWindow instruct = new InstructionsWindow(main, primaryStage);
-			primaryStage.getScene().setRoot(instruct.getRootGroup());
-			click2Player.play();
-		});
 
 	}
-
-	public Group getRootGroup() {
-		return rootGroup;
-	} 
 }
 
 

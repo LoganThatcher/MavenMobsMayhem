@@ -75,40 +75,7 @@ public class StartWindow extends Application
 	    mp.play(); 
 	    muted = false;
         
-        //Button Positioning and Sizing
-        howToPlay.setLayoutX(250);
-        howToPlay.setLayoutY(400);
-        settings.setLayoutX(375);
-        settings.setLayoutY(400);
-        startGame.setLayoutX(500);
-        startGame.setLayoutY(400);
-        
-        startGame.setPrefSize(150, 100);
-        howToPlay.setPrefSize(150, 100);
-        settings.setPrefSize(150, 100);
-        
-        //Mouse on Button Actions
-        settings.setStyle(style1);
-        settings.setOnMouseEntered(e -> {
-        	settings.setStyle(style2);
-        	clickPlayer.play();
-        });
-        settings.setOnMouseExited(e -> settings.setStyle(style1));
-        
-        startGame.setStyle(style1);
-        startGame.setOnMouseEntered(e -> {
-        	startGame.setStyle(style2);
-        	clickPlayer.play();
-        });
-        startGame.setOnMouseExited(e -> startGame.setStyle(style1));
-        
-        howToPlay.setStyle(style1);
-        howToPlay.setOnMouseEntered(e -> {
-        	howToPlay.setStyle(style2);
-        	clickPlayer.play();
-        });
-        howToPlay.setOnMouseExited(e -> howToPlay.setStyle(style1));
-        
+	    MainMenuWindow.menuLayout(startGame, howToPlay, settings, style1, style2, clickPlayer);
         
         root.getChildren().addAll(startGame, howToPlay, settings, t);
         
