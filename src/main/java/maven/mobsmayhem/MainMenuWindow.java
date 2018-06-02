@@ -19,11 +19,11 @@ public class MainMenuWindow {
 	private final Group rootGroup;
 	private final Text t;
 	boolean muted;
-	private static final int map_height = 600;
-	private static final int map_width = 900;
 	static MediaPlayer mp;
-	Image unmute_image, mute_image;
-	ImageView unmute_iv, mute_iv;
+	Image unmuteImage;
+	Image muteImage;
+	ImageView unmuteIv;
+	ImageView muteIv;
 	Image img;
 	ImagePattern pattern;
 
@@ -37,10 +37,14 @@ public class MainMenuWindow {
 			
 		//Declarations
 	    Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
-	    AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
-		AudioClip click2_player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());  	
-		Button startGame, howToPlay, settings;
-	    Media m;
+	    AudioClip clickPlayer = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
+		AudioClip click2Player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());  	
+		Button startGame;
+		Button howToPlay;
+		Button settings;
+		
+		String style1 = "-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px";
+		String style2 = "-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px";
 				 	
 	    //Main Title
 	    rootGroup = new Group();
@@ -70,26 +74,26 @@ public class MainMenuWindow {
 		settings.setPrefSize(150, 100);
 				        
 		//Mouse on Button Actions
-		settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		settings.setStyle(style1);
 		settings.setOnMouseEntered(e -> {
-			settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-			click_player.play();
+			settings.setStyle(style2);
+			clickPlayer.play();
 		});
-		settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		settings.setOnMouseExited(e -> settings.setStyle(style1));
 				        
-		startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		startGame.setStyle(style1);
 		startGame.setOnMouseEntered(e -> {
-			startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-			click_player.play();
+			startGame.setStyle(style2);
+			clickPlayer.play();
 		});
-		startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		startGame.setOnMouseExited(e -> startGame.setStyle(style1));
 				        
-		howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+		howToPlay.setStyle(style1);
 		howToPlay.setOnMouseEntered(e -> {
-			howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-			click_player.play();
+			howToPlay.setStyle(style2);
+			clickPlayer.play();
 		});
-		howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		howToPlay.setOnMouseExited(e -> howToPlay.setStyle(style1));
 				        
 				        
 	    rootGroup.getChildren().addAll(startGame, howToPlay, settings, t);
@@ -99,19 +103,19 @@ public class MainMenuWindow {
 		startGame.setOnAction(e -> {	    		
 			StoryBoard1 sb1 = new StoryBoard1(main,primaryStage);
     		primaryStage.getScene().setRoot(sb1.getRootGroup());
-    		click2_player.play();	    		
+    		click2Player.play();	    		
 		});
 				    	
 		settings.setOnAction(e -> {
 		    SettingsWindow set = new SettingsWindow(main,primaryStage);
 			primaryStage.getScene().setRoot(set.getRootGroup());
-			click2_player.play();
+			click2Player.play();
 		});
 
 		howToPlay.setOnAction( e -> {
 			InstructionsWindow instruct = new InstructionsWindow(main, primaryStage);
 			primaryStage.getScene().setRoot(instruct.getRootGroup());
-			click2_player.play();
+			click2Player.play();
 		});
 
 	}
