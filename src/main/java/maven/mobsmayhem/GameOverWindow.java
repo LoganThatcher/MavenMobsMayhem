@@ -1,6 +1,5 @@
 package maven.mobsmayhem;
 
-import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,29 +16,32 @@ import javafx.scene.text.Font;
 
 
 public class GameOverWindow {
-	private static final int map_height = 600;
-	private static final int map_width = 900;
 	static final Group root = new Group();
 	static MediaPlayer mp;
 	boolean muted;	
-	Image unmute_image, mute_image;
-	ImageView unmute_iv, mute_iv;
+	Image unmuteImage;
+	Image muteImage;
+	ImageView unmuteIv;
+	ImageView muteIv;
 
 	public GameOverWindow (Scene go, Stage primaryStage)
     {	
 		//Declarations
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 90);
 		Font font2 = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);
-		AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
-		AudioClip click2_player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
-    	Button newGame, highScores, menu;
+		AudioClip clickPlayer = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
+		AudioClip click2Player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
+    	Button newGame;
+    	Button highScores;
+    	Button menu;
+    	
     	Text t;
-    	Text G;
-    	Text E;
-    	Text F;
-    	Media m;
+    	Text g;
+    	Text eText;
     	Image img;
     	ImagePattern pattern;
+    	String style1 = "-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px";
+    	String style2 = "-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px";
 
     	
     	//Main Title
@@ -47,13 +49,13 @@ public class GameOverWindow {
     	t.setFont(font2);
     	t.setFill(Color.RED);
     	
-    	G = new Text(225,300,"You Have Failed To");
-    	G.setFont(font);
-    	G.setFill(Color.WHITE);
+    	g = new Text(225,300,"You Have Failed To");
+    	g.setFont(font);
+    	g.setFill(Color.WHITE);
     	
-    	E = new Text(225, 400, "Become The Godfather");
-    	E.setFont(font);
-    	E.setFill(Color.WHITE);
+    	eText = new Text(225, 400, "Become The Godfather");
+    	eText.setFont(font);
+    	eText.setFill(Color.WHITE);
     	
   
     	//Buttons
@@ -82,51 +84,51 @@ public class GameOverWindow {
         menu.setPrefSize(150, 100);
         
         
-        newGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        newGame.setStyle(style1);
         newGame.setOnMouseEntered(e -> {
-        	newGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
+        	newGame.setStyle(style2);
+        	clickPlayer.play();
         });
-        newGame.setOnMouseExited(e -> newGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        newGame.setOnMouseExited(e -> newGame.setStyle(style1));
         
                
-        highScores.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        highScores.setStyle(style1);
         highScores.setOnMouseEntered(e -> {
-        	highScores.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
+        	highScores.setStyle(style2);
+        	clickPlayer.play();
         });
-        highScores.setOnMouseExited(e -> highScores.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        highScores.setOnMouseExited(e -> highScores.setStyle(style1));
         
          
-        menu.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        menu.setStyle(style1);
 		menu.setOnMouseEntered(e -> {
-			menu.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-			click_player.play();
+			menu.setStyle(style2);
+			clickPlayer.play();
 		});
-		menu.setOnMouseExited(e -> menu.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+		menu.setOnMouseExited(e -> menu.setStyle(style1));
 				        
 			
-        root.getChildren().addAll(newGame, highScores, menu, t, G, E);
+        root.getChildren().addAll(newGame, highScores, menu, t, g, eText);
         
         
     	newGame.setOnAction(e -> {
     		
     		LoadWindow load = new LoadWindow(go, primaryStage);
     		primaryStage.getScene().setRoot(load.getRootGroup());
-    		click2_player.play();
+    		click2Player.play();
     		
     	});
     	
     	highScores.setOnAction(e -> {
     		HighScoreWindow hs = new HighScoreWindow(go, primaryStage);
     		primaryStage.getScene().setRoot(hs.getRootGroup());
-    		click2_player.play();
+    		click2Player.play();
     	});
     	
     	menu.setOnAction(e -> {
     		MainMenuWindow main = new MainMenuWindow(go, primaryStage);
     		primaryStage.getScene().setRoot(main.getRootGroup());
-    		click2_player.play();
+    		click2Player.play();
     	});
     	
     }
