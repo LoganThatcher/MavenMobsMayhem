@@ -1,7 +1,6 @@
 package maven.mobsmayhem;
 
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.image.Image;
@@ -10,7 +9,6 @@ import javafx.scene.text.Font;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class MainMenuWindow {

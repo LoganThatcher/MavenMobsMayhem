@@ -5,7 +5,6 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
@@ -45,11 +44,16 @@ public class StartWindow extends Application
 	
         //Declarations
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
-		AudioClip click_player = new AudioClip(getClass().getResource("assets/click.mp3").toURI().toString());
-		AudioClip click2_player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());	    	
-		Button startGame, howToPlay, settings;
+		AudioClip clickPlayer = new AudioClip(getClass().getResource("assets/click.mp3").toURI().toString());
+		AudioClip click2Player = new AudioClip(getClass().getResource("assets/click2.mp3").toURI().toString());	    	
+		Button startGame;
+		Button howToPlay;
+		Button settings;
 	    Text t;
 	   	Media m;
+	   	String style1 = "-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px";
+	   	String style2 = "-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px";
+	   	
 		 	
     	//Main Title
     	t = new Text(225,160,"Mob Mayhem");
@@ -84,26 +88,26 @@ public class StartWindow extends Application
         settings.setPrefSize(150, 100);
         
         //Mouse on Button Actions
-        settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        settings.setStyle(style1);
         settings.setOnMouseEntered(e -> {
-        	settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
+        	settings.setStyle(style2);
+        	clickPlayer.play();
         });
-        settings.setOnMouseExited(e -> settings.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        settings.setOnMouseExited(e -> settings.setStyle(style1));
         
-        startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        startGame.setStyle(style1);
         startGame.setOnMouseEntered(e -> {
-        	startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
+        	startGame.setStyle(style2);
+        	clickPlayer.play();
         });
-        startGame.setOnMouseExited(e -> startGame.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        startGame.setOnMouseExited(e -> startGame.setStyle(style1));
         
-        howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
+        howToPlay.setStyle(style1);
         howToPlay.setOnMouseEntered(e -> {
-        	howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
+        	howToPlay.setStyle(style2);
+        	clickPlayer.play();
         });
-        howToPlay.setOnMouseExited(e -> howToPlay.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
+        howToPlay.setOnMouseExited(e -> howToPlay.setStyle(style1));
         
         
         root.getChildren().addAll(startGame, howToPlay, settings, t);
@@ -114,20 +118,20 @@ public class StartWindow extends Application
     		
     		StoryBoard1 sb1 = new StoryBoard1(home,stage);
     		stage.getScene().setRoot(sb1.getRootGroup());
-    		click2_player.play();
+    		click2Player.play();
     		
     	});
     	
     	settings.setOnAction(e -> {
     		SettingsWindow set = new SettingsWindow(home, stage);
     		stage.getScene().setRoot(set.getRootGroup());
-    		click2_player.play();
+    		click2Player.play();
     	});
 
     	howToPlay.setOnAction( e -> {
     		InstructionsWindow instruct = new InstructionsWindow(home, stage);
     		stage.getScene().setRoot(instruct.getRootGroup());
-    		click2_player.play();
+    		click2Player.play();
     	});
     	
     	stage.setScene(home);
