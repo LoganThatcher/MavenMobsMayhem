@@ -75,19 +75,7 @@ public class LoadWindow
 		
 		
 		
-		Task<Void> sleeper = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try {
-                	//Sleep for 100 * timeline length
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                	// Restore interrupted state...
-                    Thread.currentThread().interrupt();
-                }
-                return null;
-            }
-        };
+		Task<Void> sleeper = sleepTimer();
         sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
@@ -113,6 +101,21 @@ public class LoadWindow
     	t.setFill(Color.WHITE);
 	}
     
+    public static Task<Void> sleepTimer() {
+		return new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                	//Sleep for 100 * timeline length
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                	// Restore interrupted state...
+                    Thread.currentThread().interrupt();
+                }
+                return null;
+            }
+        };
+	}
 
 }
 

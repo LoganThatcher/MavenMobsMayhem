@@ -32,18 +32,7 @@ public class StoryBoard3 {
 			ImagePattern pattern = new ImagePattern(img);
 			game.setFill(pattern);
 			
-			Task<Void> sleeper = new Task<Void>() {
-	            @Override
-	            protected Void call() throws Exception {
-	                try {
-	                    Thread.sleep(5000);
-	                } catch (InterruptedException e) {
-	                	// Restore interrupted state...
-	                    Thread.currentThread().interrupt();
-	                }
-	                return null;
-	            }
-	        };
+			Task<Void> sleeper = LoadWindow.sleepTimer();
 	        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 	            @Override
 	            public void handle(WorkerStateEvent event) {
