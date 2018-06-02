@@ -17,20 +17,10 @@ public class StoryBoard4 {
 	    
 		public StoryBoard4(Scene game, Stage primaryStage){
 			rootGroup = new Group();
+			Button skip = null;
+			Button next = null;
 
-			
-			String url = "assets/sb4.png";
-			Image img = new Image(url);
-			Button skip = new Button("SKIP");
-			Button next = new Button("NEXT");
-			
-			skip.setLayoutX(845);
-			skip.setLayoutY(560);
-			next.setLayoutX(785);
-			next.setLayoutY(560);
-			
-			ImagePattern pattern = new ImagePattern(img);
-			game.setFill(pattern);
+			StoryBoard1.setupStoryBoard(game, "assets/sb4.png", skip, next);
 			
 			Task<Void> sleeper = LoadWindow.sleepTimer();
 	        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {

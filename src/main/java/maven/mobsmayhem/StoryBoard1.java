@@ -17,20 +17,10 @@ public class StoryBoard1 {
 	    
 		public StoryBoard1(Scene game, Stage primaryStage){
 			rootGroup = new Group();
+			Button skip = null;
+			Button next = null;
 
-			
-			String url = "assets/sb1.png";
-			Image img = new Image(url);
-			Button skip = new Button("SKIP");
-			Button next = new Button("NEXT");
-			
-			skip.setLayoutX(845);
-			skip.setLayoutY(560);
-			next.setLayoutX(785);
-			next.setLayoutY(560);
-			
-			ImagePattern pattern = new ImagePattern(img);
-			game.setFill(pattern);
+			setupStoryBoard(game, "assets/sb1.png", skip, next);
 			
 			Task<Void> sleeper = LoadWindow.sleepTimer();
 	        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
@@ -66,6 +56,20 @@ public class StoryBoard1 {
 
 	    public Group getRootGroup() {
 	    	return rootGroup;
+	    }
+	    
+	    public static void setupStoryBoard(Scene game, String url, Button skip, Button next) {
+			Image img = new Image(url);
+			skip = new Button("SKIP");
+			next = new Button("NEXT");
+			
+			skip.setLayoutX(845);
+			skip.setLayoutY(560);
+			next.setLayoutX(785);
+			next.setLayoutY(560);
+			
+			ImagePattern pattern = new ImagePattern(img);
+			game.setFill(pattern);
 	    }
 	    
 	    
