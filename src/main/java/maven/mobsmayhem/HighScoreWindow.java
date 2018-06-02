@@ -1,8 +1,6 @@
 package maven.mobsmayhem;
 
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.image.Image;
@@ -11,20 +9,24 @@ import javafx.scene.text.Font;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class HighScoreWindow {
 
 	private final Group rootGroup;
-	private final Text t, t2, t3, t4, t5, t6;
+	private final Text t;
+	private final Text t2;
+	private final Text t3;
+	private final Text t4;
+	private final Text t5;
+	private final Text t6;
 	boolean muted;
 
 	public HighScoreWindow(Scene hs, Stage primaryStage)
 	{
 		//Upload music and fonts
-		AudioClip click_player = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
-		AudioClip click2_player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
+		AudioClip clickPlayer = new AudioClip(this.getClass().getResource("assets/click.mp3").toExternalForm());
+		AudioClip click2Player = new AudioClip(this.getClass().getResource("assets/click2.mp3").toExternalForm());
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 120);
 		
 		//Declarations
@@ -83,14 +85,14 @@ public class HighScoreWindow {
 		back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px");
 		back.setOnMouseEntered(e -> {
         	back.setStyle("-fx-background-color: transparent; -fx-text-fill: #f8f8ff; -fx-font-size: 20px");
-        	click_player.play();
+        	clickPlayer.play();
         });
 		back.setOnMouseExited(e -> back.setStyle("-fx-background-color: transparent; -fx-text-fill: #ff0000; -fx-font-size: 20px"));
 		rootGroup.getChildren().addAll(back, t, t2, t3, t4, t5, t6);
 		
 		//Button Actions
 		back.setOnAction(e -> {
-			click2_player.play();
+			click2Player.play();
 			MainMenuWindow main = new MainMenuWindow(hs, primaryStage);
 			primaryStage.getScene().setRoot(main.getRootGroup());
 		});  
