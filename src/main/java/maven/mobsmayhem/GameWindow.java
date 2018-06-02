@@ -249,17 +249,7 @@ public class GameWindow
             	case ESCAPE: 
             		pause(primaryStage, scene,circMover); break;
             	case SPACE: 
-            		if(score >= 10) {
-            			score = score - 10;
-            			scoreCounter.setText(scoreHeading + Integer.toString(score));
-	            		Circle money = new Circle();
-	            		money.setCenterY(circle.getCenterY());
-	            	    money.setCenterX(circle.getCenterX());
-	            	    money.setRadius(5);
-	            	    money.setFill(Color.GREEN);
-	            	    rootGroup.getChildren().add(money);
-	            	    moneys.add(money);
-            		}
+            		dropMoney(circle);
             	    break;
             	default:
             		break;
@@ -268,6 +258,20 @@ public class GameWindow
           }
         });
       }
+    
+    private void dropMoney(final Circle circle) {
+    	if(score >= 10) {
+			score = score - 10;
+			scoreCounter.setText(scoreHeading + Integer.toString(score));
+    		Circle money = new Circle();
+    		money.setCenterY(circle.getCenterY());
+    	    money.setCenterX(circle.getCenterX());
+    	    money.setRadius(5);
+    	    money.setFill(Color.GREEN);
+    	    rootGroup.getChildren().add(money);
+    	    moneys.add(money);
+		}
+	}
 
     
       private void pause(Stage primaryStage, Scene scene, Timeline circMover){
