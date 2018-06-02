@@ -16,7 +16,6 @@ public class SettingsWindow {
 	private final Group rootGroup;
 	private final Text t;
 	private final Text t2;
-	boolean muted;
 
 	public SettingsWindow(Scene set, Stage primaryStage)
 	{

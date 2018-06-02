@@ -17,11 +17,6 @@ import javafx.scene.text.Font;
 public class GameOverWindow {
 	static final Group root = new Group();
 	static MediaPlayer mp;
-	boolean muted;	
-	Image unmuteImage;
-	Image muteImage;
-	ImageView unmuteIv;
-	ImageView muteIv;
 
 	public GameOverWindow (Scene go, Stage primaryStage)
     {	

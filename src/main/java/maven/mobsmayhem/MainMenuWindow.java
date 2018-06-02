@@ -17,12 +17,6 @@ public class MainMenuWindow {
 
 	private final Group rootGroup;
 	private final Text t;
-	boolean muted;
-	static MediaPlayer mp;
-	Image unmuteImage;
-	Image muteImage;
-	ImageView unmuteIv;
-	ImageView muteIv;
 	Image img;
 	ImagePattern pattern;
 

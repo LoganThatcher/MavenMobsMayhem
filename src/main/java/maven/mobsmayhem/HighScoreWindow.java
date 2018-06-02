@@ -20,7 +20,6 @@ public class HighScoreWindow {
 	private final Text t4;
 	private final Text t5;
 	private final Text t6;
-	boolean muted;
 
 	public HighScoreWindow(Scene hs, Stage primaryStage)
 	{

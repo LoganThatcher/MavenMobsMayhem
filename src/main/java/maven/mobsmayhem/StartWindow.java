@@ -22,8 +22,6 @@ public class StartWindow extends Application
 	static final Group root = new Group();
 	static MediaPlayer mp;
 	boolean muted;	
-	Image unmute_image, mute_image;
-	ImageView unmute_iv, mute_iv;
 	Scene home = new Scene(root, MAPWIDTH, MAPHEIGHT);
 	Image img;
 	ImagePattern pattern;
