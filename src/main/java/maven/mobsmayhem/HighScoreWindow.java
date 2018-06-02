@@ -43,37 +43,13 @@ public class HighScoreWindow {
 		hs.setFill(pattern);
 
     	//Settings Title and Mute Title
-		t2.setFont(font);
-		t2.setText("High Scores");
-		t2.setFill(Color.WHITE);
-		t2.setX(300.0);
-		t2.setY(100.0);
+		setText(t,"High Scores", 300.0, 100.0, font);
 		font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 40);
-		t.setFont(font);
-		t.setText("Jason        300");
-		t.setFill(Color.WHITE);
-		t.setX(375.0);
-		t.setY(200.0);
-		t3.setFont(font);
-		t3.setText("Danica       280");
-		t3.setFill(Color.WHITE);
-		t3.setX(375.0);
-		t3.setY(245.0);
-		t4.setFont(font);
-		t4.setText("Anshula      270");
-		t4.setFill(Color.WHITE);
-		t4.setX(375.0);
-		t4.setY(290.0);
-		t5.setFont(font);
-		t5.setText("Logan        250");
-		t5.setFill(Color.WHITE);
-		t5.setX(375.0);
-		t5.setY(335.0);
-		t6.setFont(font);
-		t6.setText("Lindsey      200");
-		t6.setFill(Color.WHITE);
-		t6.setX(375.0);
-		t6.setY(380.0);
+		setText(t2,"Jason        300", 375.0, 200.0, font);
+		setText(t3,"Danica       280", 375.0, 245.0, font);
+		setText(t4,"Anshula      270", 375.0, 290.0, font);
+		setText(t5,"Logan        250", 375.0, 335.0, font);
+		setText(t6,"Lindsey      200", 375.0, 380.0, font);
 		
 		//Button Positioning and Size
 		back.setLayoutX(600);
@@ -100,5 +76,13 @@ public class HighScoreWindow {
 	public Group getRootGroup() {
 		return rootGroup;
 	}  
+	
+	private void setText(Text t, String s, double x, double y, Font f) {
+		t.setFont(f);
+		t.setText(s);
+		t.setFill(Color.WHITE);
+		t.setX(x);
+		t.setY(y);
+	}
 
 }
