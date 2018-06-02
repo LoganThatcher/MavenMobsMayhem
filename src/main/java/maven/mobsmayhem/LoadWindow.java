@@ -21,7 +21,7 @@ public class LoadWindow
 {
 	private final Group rootGroup;	
 	int i = 0;
-	double end_line = 25;
+	double endLine = 25;
     
 	public LoadWindow(Scene game, Stage primaryStage){
 				
@@ -29,12 +29,14 @@ public class LoadWindow
 		Image img = new Image(url);
 		ImagePattern pattern = new ImagePattern(img);
 		Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
-		Text t, progress, tip;
+		Text t;
+		Text progress;
+		Text tip;
 		Line l;
 		
 		rootGroup = new Group();
 		
-		l = new Line(25,535, end_line, 535);
+		l = new Line(25,535, endLine, 535);
 		l.setStroke(Color.RED);
 		l.setStrokeWidth(5);
 		
@@ -64,9 +66,9 @@ public class LoadWindow
 		    @Override
 		    public void handle(ActionEvent event) {
 		       progress.setText(Integer.toString(i));
-		       l.setEndX(end_line);
+		       l.setEndX(endLine);
 		       i++;
-		       end_line += 2.65;
+		       endLine += 2.65;
 		    }
 		}));
 		loading.setCycleCount(101);
@@ -92,8 +94,8 @@ public class LoadWindow
         sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
-            	GameWindow game_screen = new GameWindow(game,primaryStage);
-        		primaryStage.getScene().setRoot(game_screen.getRootGroup());
+            	GameWindow gameScreen = new GameWindow(game,primaryStage);
+        		primaryStage.getScene().setRoot(gameScreen.getRootGroup());
             }
         });
         new Thread(sleeper).start();
