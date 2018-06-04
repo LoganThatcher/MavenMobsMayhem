@@ -12,7 +12,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 
-
 public class GameOverWindow {
 	static final Group root = new Group();
 	static MediaPlayer mp;
