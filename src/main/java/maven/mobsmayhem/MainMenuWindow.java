@@ -22,9 +22,11 @@ public class MainMenuWindow {
 	{
 		//Background Image		
 		img = new Image("assets/start_screen.jpg");
+		int codeSmell;
 				
 		pattern = new ImagePattern(img);
 		main.setFill(pattern);
+		
 			
 		//Declarations
 	    Font font = Font.loadFont(getClass().getResourceAsStream("assets/godfather.ttf"), 150);		
